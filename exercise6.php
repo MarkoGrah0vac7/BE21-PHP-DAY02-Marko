@@ -7,35 +7,41 @@
     <title>Document</title>
 </head>
 <body>
-
        <form action="exercise6.php"  method ="POST">
            Firstname: <input type="text"   name="firstname" />
            Lastname: <input type ="text"  name="lastname" />
            Age: <input type="text" name="age" />
-           <input  type="submit"  name="submit"  />
+           <input  type="submit"  name="submit" value="test"  />
         </form>
        <?php
-
-      
-
+       $info = '';
        if( isset($_POST['submit']))
        {
-           if( $_POST["name"] && $_POST["surname"] && $_POST["age"] )
+           if( $_POST["firstname"] && $_POST["lastname"] && $_POST["age"] )
            {
-               echo "Welcome ". $_POST[ 'name']." ". $_POST[ 'surname']. $_POST['age']."<br />" ;
-              
+               if(strlen($_POST["firstname"]) > 5){
+                $info = "<div>Welcome <span style='color: green;'>". $_POST[ 'firstname']."</span> ". $_POST[ 'lastname']." ". $_POST['age']."</div>" ;
+               } else {
+               $info = "<div>Welcome <span style='color: red;'>". $_POST[ 'firstname']."</span> ". $_POST[ 'lastname']." ". $_POST['age']."</div>" ;
+            }
            }
-           elseif($_POST["firstname"]) {
-               echo "Please insert your firstname.<br />";
-           }
-           elseif($_POST["lastname"]) {
-            echo "Please insert your lastname.<br />";
-           }
-           else{
-               echo "Please enter your name and surname.<br />";
-           }
-       }
+           elseif( !$_POST["firstname"] && !$_POST["lastname"] && !$_POST["age"] ) {
+            echo "Please enter all your Information.<br />";
+        }
+        elseif( !$_POST["firstname"] || !$_POST["lastname"] || !$_POST["age"] ) {
+            if(!$_POST["firstname"]){
+                echo "Please enter your first name <br>";
+            }
+            if(!$_POST["lastname"]){
+                echo "Please enter your last name <br>";
+            }
+            if(!$_POST["age"]){
+                echo "Please enter your age <br>";
+            }
+        } }      
        ?>
-  
+        <?php echo $info;?>
+        
+
 </body>
 </html>

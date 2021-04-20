@@ -8,16 +8,15 @@
 </head>
 <body>
     <?php
-
-    function convertToHoursMins($time, $format = '%02d:%02d') {
-        if($time < 1) {
+    function minToHours($time) {
+        if($time < 0) {
             return;
         }
         $hours = floor($time / 60);
         $minutes = ($time % 60);
-        return sprintf($format, $hours, $minutes);
+        return "The amount of $time minutes is equal to $hours hours and $minutes minutes.";
     }
-        echo convertToHoursMins(250, '%02d hours %02d minutes');
+        echo minToHours(470);
     ?>
 </body>
 </html>
